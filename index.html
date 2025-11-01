@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>OE Jack — Autonomous Ops & Efficiency Platform</title>
+  <meta name="description" content="OE Jack automates ops runbooks, reduces toil, and optimizes cloud & business processes with event-driven automation and explainable AI." />
+  <meta name="author" content="OE Jack" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --muted:#94a3b8;
+      --accent:#7c3aed;
+      --accent-2:#06b6d4;
+      --glass: rgba(255,255,255,0.04);
+      --radius:14px;
+      --max:1100px;
+      --mono: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--mono);
+      background: linear-gradient(180deg,#071022 0%, #071029 40%, #041025 100%);
+      color:#e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      padding:32px 20px;
+      display:flex;
+      justify-content:center;
+    }
+    .container{
+      width:100%;
+      max-width:var(--max);
+    }
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:28px;
+    }
+    .brand{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      text-decoration:none;
+      color:inherit;
+    }
+    .logo{
+      width:52px;height:52px;
+      background:linear-gradient(135deg,var(--accent),#5b21b6);
+      border-radius:12px;
+      display:grid;
+      place-items:center;
+      box-shadow: 0 6px 18px rgba(124,58,237,0.18), inset 0 -6px 16px rgba(255,255,255,0.03);
+      font-weight:800;
+      font-size:20px;
+      color:white;
+    }
+    nav{display:flex;gap:14px;align-items:center}
+    nav a{
+      color:var(--muted);
+      text-decoration:none;
+      padding:8px 12px;
+      border-radius:10px;
+      font-weight:600;
+      font-size:14px;
+    }
+    nav a.primary{
+      background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      color:white;
+      box-shadow: 0 6px 18px rgba(7,18,36,0.5);
+    }
+    main .hero{
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:28px;
+      align-items:center;
+      margin-bottom:32px;
+    }
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr; padding-bottom:12px}
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:var(--radius);
+      padding:20px;
+      box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+    .headline{
+      font-size:34px;
+      line-height:1.02;
+      margin:0 0 10px 0;
+      letter-spacing:-0.02em;
+    }
+    .sub{
+      color:var(--muted);
+      margin:0 0 22px 0;
+      font-size:16px;
+    }
+    .cta-row{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{
+      padding:12px 16px;border-radius:12px;border:0;font-weight:700;cursor:pointer;
+      background:linear-gradient(90deg,var(--accent),#5e60ce); color:white;
+      box-shadow: 0 6px 20px rgba(124,58,237,0.18);
+    }
+    .btn.ghost{
+      background:transparent;border:1px solid rgba(255,255,255,0.06); color:var(--muted); font-weight:600;
+    }
+    .eyebrow{
+      display:inline-flex;gap:10px;align-items:center;background:var(--glass);padding:6px 10px;border-radius:999px;color:var(--accent-2);font-weight:700;font-size:13px
+    }
+    .stats{
+      display:flex;gap:12px;margin-top:18px;flex-wrap:wrap;
+    }
+    .stat{
+      background:rgba(255,255,255,0.02);padding:12px;border-radius:10px;font-weight:700;color:var(--muted);min-width:110px;text-align:center
+    }
+    .visual{
+      height:320px;border-radius:12px;padding:16px;background:
+      linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      display:flex;flex-direction:column;gap:10px;align-items:center;justify-content:center;
+    }
+    .device{
+      width:100%;max-width:360px;border-radius:12px;padding:12px;background:linear-gradient(180deg,#051027, #07102a);
+      border:1px solid rgba(255,255,255,0.03); box-shadow: 0 12px 50px rgba(2,6,23,0.6);
+    }
+    .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.02);font-weight:700;color:var(--muted);margin-bottom:12px}
+    /* features */
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:26px 0 32px}
+    @media (max-width:900px){ .features{grid-template-columns:1fr} }
+    .feature{padding:18px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.015),rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.02)}
+    .feature h4{margin:6px 0 8px 0}
+    .feature p{color:var(--muted);margin:0;font-size:14px}
+    /* pricing */
+    .pricing{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:28px}
+    .plan{flex:1;min-width:220px;border-radius:12px;padding:18px;background:linear-gradient(180deg,rgba(255,255,255,0.01),rgba(255,255,255,0.005));border:1px solid rgba(255,255,255,0.02)}
+    .plan h3{margin:0 0 8px 0}
+    .price{font-size:22px;font-weight:800;margin:8px 0}
+    .feature-list{color:var(--muted);margin:12px 0 0 0;padding:0;list-style:none}
+    .feature-list li{margin:8px 0}
+    .badge{display:inline-block;font-size:12px;padding:6px 8px;border-radius:999px;background:rgba(255,255,255,0.02);color:var(--accent);font-weight:700}
+    /* testimonials */
+    .testimonials{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px}
+    @media (max-width:900px){ .testimonials{grid-template-columns:1fr} }
+    .quote{padding:16px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.01),rgba(255,255,255,0.005))}
+    .team{display:flex;gap:12px;flex-wrap:wrap}
+    .member{display:flex;gap:10px;align-items:center}
+    .avatar{width:56px;height:56px;border-radius:12px;background:linear-gradient(180deg,#0b1220,#07102a);display:grid;place-items:center;color:var(--muted);font-weight:800}
+    footer{margin-top:36px;border-top:1px solid rgba(255,255,255,0.03);padding-top:18px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:var(--muted);font-size:14px}
+    /* small helpers */
+    .muted{color:var(--muted)}
+    .kbd{background:rgba(255,255,255,0.02);padding:6px 8px;border-radius:8px;font-weight:700;color:var(--muted);font-size:13px}
+    /* form */
+    form{display:grid;gap:10px}
+    input,textarea,select{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px;border-radius:10px;color:inherit;outline:none}
+    input::placeholder, textarea::placeholder{color:rgba(230,238,248,0.35)}
+    input:focus, textarea:focus{border-color:rgba(124,58,237,0.7);box-shadow:0 4px 20px rgba(124,58,237,0.06)}
+    .small{font-size:13px;color:var(--muted)}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    @media (max-width:600px){ .grid-2{grid-template-columns:1fr} }
+    /* subtle footer links */
+    .f-links{display:flex;gap:12px;flex-wrap:wrap}
+    a.link{color:var(--muted);text-decoration:none}
+  </style>
+</head>
+<body>
+  <div class="container" role="main">
+    <header>
+      <a class="brand" href="#" aria-label="OE Jack home">
+        <div class="logo" aria-hidden="true">OE</div>
+        <div>
+          <div style="font-weight:800;font-size:16px">OE Jack</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:2px">Ops + Efficiency — automated</div>
+        </div>
+      </a>
+
+      <nav aria-label="Primary navigation">
+        <a href="#product" class="link">Product</a>
+        <a href="#pricing" class="link">Pricing</a>
+        <a href="#team" class="link">Team</a>
+        <a href="#contact" class="primary">Get Demo</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="card" aria-labelledby="hero-title">
+          <div class="eyebrow" role="status" aria-live="polite">Launch-ready • SOC2 scoped</div>
+          <h1 id="hero-title" class="headline">OE Jack — Autonomous Runbooks & Ops Intelligence</h1>
+          <p class="sub">Reduce firefighting, accelerate incident resolution, and cut cloud costs with event-driven automation, explainable AI runbooks, and low-code action builders.</p>
+
+          <div class="cta-row" role="group" aria-label="Primary call to actions">
+            <button class="btn" id="demoBtn">Request a demo</button>
+            <button class="btn ghost" id="tourBtn">Product tour</button>
+          </div>
+
+          <div class="stats" aria-hidden="false">
+            <div class="stat">
+              <div style="font-size:20px;color:white"><strong>2.4x</strong></div>
+              <div class="small">faster MTTR</div>
+            </div>
+            <div class="stat">
+              <div style="font-size:20px;color:white"><strong>17%</strong></div>
+              <div class="small">avg infra cost savings</div>
+            </div>
+            <div class="stat">
+              <div style="font-size:20px;color:white"><strong>98%</strong></div>
+              <div class="small">automation reliability</div>
+            </div>
+          </div>
+
+          <div style="margin-top:18px;color:var(--muted);font-size:13px">
+            Trusted by engineering teams at mid-size and enterprise companies.
+          </div>
+        </div>
+
+        <aside class="visual card" aria-label="Product visual">
+          <div class="pill">Live: Incident feed • Auto-runbooks</div>
+
+          <div class="device" role="img" aria-label="OE Jack dashboard preview">
+            <!-- simplified dashboard using SVG & HTML to avoid external images -->
+            <div style="display:flex;gap:12px;align-items:center">
+              <div style="flex:1">
+                <div style="display:flex;justify-content:space-between;align-items:center">
+                  <div style="font-weight:800">Incidents</div>
+                  <div class="kbd">3 active</div>
+                </div>
+                <div style="margin-top:10px;background:rgba(255,255,255,0.02);padding:10px;border-radius:10px">
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+                    <div style="font-weight:700">API latency spike</div>
+                    <div class="small">2m ago</div>
+                  </div>
+                  <div class="small muted">Triggered runbook: <strong>scale-and-warm</strong></div>
+                </div>
+                <div style="margin-top:10px;background:transparent;color:var(--muted);font-size:13px">Suggested action: apply ephemeral cache & scale pool</div>
+              </div>
+            </div>
+
+            <div style="height:12px"></div>
+            <div style="display:flex;gap:8px">
+              <div style="flex:1;background:rgba(255,255,255,0.02);padding:8px;border-radius:8px;text-align:center">Runbooks <div style="font-weight:800;margin-top:6px">128</div></div>
+              <div style="flex:1;background:rgba(255,255,255,0.02);padding:8px;border-radius:8px;text-align:center">Workflows <div style="font-weight:800;margin-top:6px">24</div></div>
+            </div>
+          </div>
+
+          <div style="font-size:13px;color:var(--muted);margin-top:8px">Explainable AI suggestions, audit trail, and one-click remediations.</div>
+        </aside>
+      </section>
+
+      <!-- Product / features -->
+      <section id="product" aria-labelledby="product-title">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+          <h2 id="product-title" style="margin:0">What OE Jack does</h2>
+          <div class="badge">For SREs • DevOps • Platform</div>
+        </div>
+
+        <p class="muted" style="margin:6px 0 18px 0">OE Jack connects to observability, cloud provider, and ticketing tools to turn alerts into reliable, audited automations with human-in-loop controls.</p>
+
+        <div class="features" role="list">
+          <article class="feature" role="listitem" aria-label="Incident detection & orchestration">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2v6" stroke="#7c3aed" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 16v6" stroke="#06b6d4" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M4.9 7.5l4.2 2.4" stroke="#94a3b8" stroke-width="1.4" stroke-linecap="round"/></svg>
+            <h4>Event-driven orchestration</h4>
+            <p>Auto-detect incidents from logs, metrics, and traces and attach deterministic runbooks that can be simulated, tested, or auto-executed.</p>
+          </article>
+
+          <article class="feature" role="listitem" aria-label="Low-code runbook builder">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2" stroke="#7c3aed" stroke-width="1.4"/><path d="M8 8h8" stroke="#94a3b8" stroke-width="1.2" stroke-linecap="round"/></svg>
+            <h4>Low-code runbook editor</h4>
+            <p>Drag-and-drop actions, conditional logic, and approval gates — deploy automations without touching YAML or scripts.</p>
+          </article>
+
+          <article class="feature" role="listitem" aria-label="Explainable AI suggestions">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2C8.1 2 5 5.1 5 9c0 1 .2 2 .6 2.9L12 22l6.4-10.1c.4-.9.6-1.9.6-2.9 0-3.9-3.1-7-7-7z" stroke="#06b6d4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <h4>Explainable AI & runbook suggestions</h4>
+            <p>AI proposes mitigations and a human-readable explanation. Every suggestion includes data sources, confidence score, and an audit trail.</p>
+          </article>
+
+          <article class="feature" role="listitem" aria-label="Cost & config optimization">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2v20" stroke="#7c3aed" stroke-width="1.2" stroke-linecap="round"/><path d="M5 12h14" stroke="#94a3b8" stroke-width="1.2" stroke-linecap="round"/></svg>
+            <h4>Cost & config guardrails</h4>
+            <p>Continuously analyze infra usage and propose rightsizing, reserved-savings, and policy fixes with projected ROI estimates.</p>
+          </article>
+
+          <article class="feature" role="listitem" aria-label="Integrations">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="#06b6d4" stroke-width="1.2"/></svg>
+            <h4>Integrations & audit trail</h4>
+            <p>First-class connectors (Prometheus, Datadog, Sentry, PagerDuty, Slack, AWS, GCP, Azure, Jira) and immutable audit logs for compliance.</p>
+          </article>
+
+          <article class="feature" role="listitem" aria-label="Shadow mode & testing">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="4" width="16" height="12" rx="1.5" stroke="#7c3aed" stroke-width="1.2"/></svg>
+            <h4>Shadow & test runs</h4>
+            <p>Runbooks can be shadowed against production traffic to validate effects and surface unintended consequences before activation.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- pricing -->
+      <section id="pricing" aria-labelledby="pricing-title">
+        <h2 id="pricing-title" style="margin:0 0 8px 0">Plans that scale with you</h2>
+        <p class="muted" style="margin-top:6px">A single platform for automation and governance — pay by nodes + automation runs. No vendor lock-in.</p>
+
+        <div class="pricing" role="list">
+          <div class="plan card" role="listitem" aria-label="Starter plan">
+            <h3>Starter</h3>
+            <div class="price">$0 <span class="small muted">/ month</span></div>
+            <div class="small muted">Up to 3 users • best for early startups</div>
+            <ul class="feature-list" aria-hidden="false">
+              <li>Event ingestion (5k events/mo)</li>
+              <li>Up to 25 runbook runs</li>
+              <li>Community support</li>
+            </ul>
+            <div style="margin-top:12px"><button class="btn">Start free</button></div>
+          </div>
+
+          <div class="plan card" role="listitem" aria-label="Growth plan">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <h3>Growth</h3>
+              <div class="badge">Most popular</div>
+            </div>
+            <div class="price">$499 <span class="small muted">/ month</span></div>
+            <div class="small muted">SRE teams & platform engineering</div>
+            <ul class="feature-list">
+              <li>All Starter features</li>
+              <li>Event retention 90 days</li>
+              <li>Up to 15k runbook runs</li>
+              <li>Integrations and role-based access</li>
+            </ul>
+            <div style="margin-top:12px"><button class="btn">Book a demo</button></div>
+          </div>
+
+          <div class="plan card" role="listitem" aria-label="Enterprise plan">
+            <h3>Enterprise</h3>
+            <div class="price">Custom</div>
+            <div class="small muted">High-availability • SAML • SOC2</div>
+            <ul class="feature-list">
+              <li>Unlimited runbooks & runs</li>
+              <li>Private VPC & SSO</li>
+              <li>Dedicated onboarding & 24/7 support</li>
+            </ul>
+            <div style="margin-top:12px"><button class="btn">Contact sales</button></div>
+          </div>
+        </div>
+
+        <div style="font-size:13px;color:var(--muted)">All plans include a 14-day trial for Growth features. Pricing excludes cloud provider resource costs.</div>
+      </section>
+
+      <!-- testimonials & team -->
+      <section aria-labelledby="trust-title" style="margin-top:28px">
+        <h2 id="trust-title" style="margin:0 0 12px 0">Customers & stories</h2>
+
+        <div class="testimonials" role="list">
+          <div class="quote card" role="listitem">
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
+              <div class="avatar" aria-hidden="true">AL</div>
+              <div>
+                <div style="font-weight:800">Alex Li</div>
+                <div class="small muted">Head of SRE, FlickerOps</div>
+              </div>
+            </div>
+            <div class="muted">"OE Jack cut our incident toil by 60% in the first month. The explainable suggestions helped our on-call rotate faster and trust automated remediations."</div>
+          </div>
+
+          <div class="quote card" role="listitem">
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
+              <div class="avatar" aria-hidden="true">SM</div>
+              <div>
+                <div style="font-weight:800">Sana Mir</div>
+                <div class="small muted">Platform Lead, Shoplytics</div>
+              </div>
+            </div>
+            <div class="muted">"Shadow runs were a game-changer — we validated automated scaling without surprises. The cost optimization recommendations paid for OE Jack in 8 weeks."</div>
+          </div>
+        </div>
+
+        <div style="margin-top:18px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+          <div>
+            <h3 style="margin:0 0 8px 0">Built by operators</h3>
+            <p class="muted" style="margin:0">OE Jack is founded by ex-SREs and ML engineers who wrote runbooks for the things that kept them up at night.</p>
+          </div>
+
+          <div class="team" aria-label="Company team">
+            <div class="member">
+              <div class="avatar">MJ</div>
+              <div>
+                <div style="font-weight:800">Mina Jovan</div>
+                <div class="small muted">CEO & Co-founder</div>
+              </div>
+            </div>
+
+            <div class="member">
+              <div class="avatar">RT</div>
+              <div>
+                <div style="font-weight:800">Ravi Thapa</div>
+                <div class="small muted">CTO & Co-founder</div>
+              </div>
+            </div>
+
+            <div class="member">
+              <div class="avatar">EY</div>
+              <div>
+                <div style="font-weight:800">Eve Yoon</div>
+                <div class="small muted">Head of Product</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ & Contact -->
+      <section style="margin-top:28px;display:grid;grid-template-columns:1fr 380px;gap:16px">
+        <div class="card" aria-labelledby="faq-title">
+          <h3 id="faq-title" style="margin-top:0">FAQ</h3>
+
+          <details style="margin-bottom:10px">
+            <summary style="font-weight:700;cursor:pointer">How does OE Jack integrate with my monitoring stack?</summary>
+            <div class="muted" style="margin-top:8px">We provide secure connectors and webhooks for Prometheus, Datadog, NewRelic, Sentry and can ingest alerts from any webhook-capable tool. Integrations are configured per-team and support scoped permissions.</div>
+          </details>
+
+          <details style="margin-bottom:10px">
+            <summary style="font-weight:700;cursor:pointer">Is automation safe for production?</summary>
+            <div class="muted" style="margin-top:8px">Every runbook can be configured with approval gates, shadow mode, and simulated dry-runs. Audit logs and immutable evidence are attached to every action for compliance.</div>
+          </details>
+
+          <details style="margin-bottom:10px">
+            <summary style="font-weight:700;cursor:pointer">Can I host OE Jack in my VPC?</summary>
+            <div class="muted" style="margin-top:8px">Yes. Enterprise plans support private VPC deployments, dedicated networking, and on-premise connectors for sensitive environments.</div>
+          </details>
+        </div>
+
+        <aside class="card" id="contact" aria-labelledby="contact-title">
+          <h3 id="contact-title" style="margin-top:0">Contact & demo</h3>
+          <p class="muted">Request a tailored demo or pilot. Tell us your scale and pain points — we'll prepare an environment matching your stack.</p>
+
+          <form id="contactForm" aria-label="Contact form">
+            <div class="grid-2">
+              <input type="text" id="name" name="name" placeholder="Your name" required aria-required="true" />
+              <input type="email" id="email" name="email" placeholder="Work email" required aria-required="true" />
+            </div>
+
+            <select id="role" name="role" aria-label="Your role">
+              <option value="">Role (optional)</option>
+              <option>Engineering Manager</option>
+              <option>SRE</option>
+              <option>Platform Engineer</option>
+              <option>CTO</option>
+            </select>
+
+            <textarea id="message" rows="4" placeholder="Tell us about your stack or desired pilot" aria-label="Message"></textarea>
+
+            <div style="display:flex;gap:8px;align-items:center">
+              <button type="submit" class="btn" aria-label="Submit request">Send request</button>
+              <div class="small muted">Or email <a class="link" href="mailto:hello@oejack.com">hello@oejack.com</a></div>
+            </div>
+
+            <div id="formMsg" class="small muted" role="status" aria-live="polite" style="margin-top:8px;display:none"></div>
+          </form>
+        </aside>
+      </section>
+
+    </main>
+
+    <footer>
+      <div class="muted">© <strong>OE Jack</strong> 2025 — Built by operators. All rights reserved.</div>
+      <div class="f-links" aria-hidden="false">
+        <a class="link" href="#">Privacy</a>
+        <a class="link" href="#">Terms</a>
+        <a class="link" href="#contact">Contact</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Minimal interactive behaviors (no external libs). Designed for demo pages only.
+    (function(){
+      // Demo & tour buttons
+      const demoBtn = document.getElementById('demoBtn');
+      const tourBtn = document.getElementById('tourBtn');
+      demoBtn.addEventListener('click', () => {
+        document.getElementById('contact').scrollIntoView({behavior:'smooth'});
+        showTempMessage('Opening contact form — tell us about your stack!');
+      });
+      tourBtn.addEventListener('click', () => {
+        // quick in-page "tour" highlight
+        const highlights = [document.querySelector('.visual'), document.querySelector('#product'), document.querySelector('#pricing')];
+        let i = 0;
+        const hi = () => {
+          if(i>0) highlights[i-1].style.outline = '';
+          if(i >= highlights.length) return;
+          const el = highlights[i];
+          el.style.outline = '2px solid rgba(124,58,237,0.9)';
+          el.scrollIntoView({behavior:'smooth', block:'center'});
+          setTimeout(()=> { el.style.outline=''; i++; if(i<highlights.length) hi(); }, 1300);
+        };
+        hi();
+      });
+
+      // contact form simple validation & fake submit
+      const form = document.getElementById('contactForm');
+      const msg = document.getElementById('formMsg');
+      form.addEventListener('submit', (ev) => {
+        ev.preventDefault();
+        const name = form.name.value.trim();
+        const email = form.email.value.trim();
+        if(!name || !email){
+          showTempMessage('Please add your name and work email.', true);
+          return;
+        }
+        // pretend to send (demo)
+        showTempMessage('Thanks — your demo request was sent. We will reply within 1 business day.');
+        form.reset();
+      });
+
+      function showTempMessage(text, isError=false){
+        msg.style.display = 'block';
+        msg.style.color = isError ? '#ffb4b4' : '';
+        msg.textContent = text;
+        setTimeout(()=> { msg.style.display = 'none'; }, 5000);
+      }
+
+      // small accessibility: keyboard shortcut "d" opens demo
+      window.addEventListener('keydown', (e) => {
+        if(e.key.toLowerCase() === 'd' && !e.metaKey && !e.ctrlKey){
+          e.preventDefault();
+          demoBtn.click();
+        }
+      });
+
+      // Prefill small marketing friendly focus
+      document.addEventListener('DOMContentLoaded', () => {
+        // progressive enhancement: reveal counts sequentially
+        const stats = document.querySelectorAll('.stat strong');
+        stats.forEach((el,i) => {
+          el.style.opacity=0;
+          setTimeout(()=> { el.style.transition='opacity .6s'; el.style.opacity=1; }, 300 + i*220);
+        });
+      });
+
+    })();
+  </script>
+</body>
+</html>
